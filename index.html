@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Contact Page</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+ <div class="main-wrapper">
+  <header class="navbar">
+    <div class="logo">Intermediate HTML,CSS and Javascript</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Contact</a>
+      <a href="#">Gallery</a>
+    </nav>
+  </header>
+  <section class="gallery-section">
+  <h2>Image Gallery</h2>
+  <input type="text" id="imageUrlInput" placeholder="Paste image URL here" />
+  <button onclick="addImage()">Add Image</button>
+  <div id="gallery"></div>
+</section>
+<script>
+function addImage() {
+  const url = document.getElementById("image-url").value;
+  const gallery = document.getElementById("gallery");
+
+  if (url.trim() === "") {
+    alert("Please enter a valid image URL.");
+    return;
+  }
+
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "User added image";
+  img.onerror = function () {
+    alert("Image could not be loaded. Please check the URL.");
+    this.remove(); // Remove broken image
+  };
+  img.style.maxWidth = "100%";
+  img.style.marginTop = "10px";
+
+  gallery.appendChild(img);
+}
+</script>
+  <main class="grid-layout">
+    <section class="form-section">
+      <h1>Contact Us</h1>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit</button>
+  <p id="formMessage" style="color: green; margin-top: 10px;"></p>
+      </form>
+    </section>
+
+    <section class="todo-section">
+      <h2>To-Do List</h2>
+      <input type="text" id="taskInput" placeholder="Add new task" />
+      <button onclick="addTask()">Add</button>
+      <ul id="taskList"></ul>
+    </section>
+  </main>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
